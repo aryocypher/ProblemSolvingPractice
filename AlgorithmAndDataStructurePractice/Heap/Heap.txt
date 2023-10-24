@@ -1,0 +1,26 @@
+Heap has 3 properties
+
+1) Binary Tree
+
+2) Complete binary tree - ALl levels must be filled completely except last level. And leaf should be added left to right
+
+3) Heap Order property - Parent must be greater than its children at any given element for max heap and reverse in min heap.
+
+
+
+//Time complexity
+Push - O(nlogn)
+
+Pop - O(nlogn)
+Get - O(1)
+
+
+Heap can be represented using array internally. 
+
+Representing heap data structure in array
+    - We can not use 0th index for simplicity
+    - Each child of a node will be present at 2i , 2i+1.
+     
+
+use greater for minheap, 
+
