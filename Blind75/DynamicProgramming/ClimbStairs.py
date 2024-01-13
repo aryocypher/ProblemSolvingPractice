@@ -38,7 +38,7 @@ class Solution:
 
             return cache[n]
 
-        def climbStairsRec(self, n: int) -> int:
+        def climbStairsRecWay(self, n: int) -> int:
             cache = [-1]*(n+1)
 
             def climbStairsRec(c):
