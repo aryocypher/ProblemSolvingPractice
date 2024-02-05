@@ -25,6 +25,29 @@
 # 0 <= height[i] <= 105
 
 class Solution:
+    def trapCorrectSol(self, height: List[int]) -> int:
+        maxLeft = height[0]
+        maxRight = height[len(height)-1]
+
+        count = 0
+        left = 0
+        right = len(height)-1
+
+        while left < right:
+            maxLeft = max(height[left], maxLeft)
+            maxRight = max(height[right], maxRight)
+
+            if maxLeft < maxRight:
+                curr = maxLeft-height[left]
+                count += curr
+                left += 1
+            else:
+                curr = maxRight-height[right]
+                count += curr
+                right -= 1
+
+        return count
+
     def trap(self, height: List[int]) -> int:
         left, right = [], [0]*len(height)
         for i in range(len(height)):
