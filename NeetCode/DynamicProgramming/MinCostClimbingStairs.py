@@ -37,7 +37,15 @@
 # 2 <= cost.length <= 1000
 # 0 <= cost[i] <= 999
 class Solution:
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+    def minCostClimbingStairsIterative(self, cost: List[int]) -> int:
+        n = len(cost)
+        cache = [0]*(n+2)
+        for i in range(n-1, -1, -1):
+            cache[i] = min(cache[i+1], cache[i+2])+cost[i]
+
+        return min(cache[0], cache[1])
+
+    def minCostClimbingStairsRecursive(self, cost: List[int]) -> int:
         n = len(cost)
         cache = [-1]*(n+1)
 
