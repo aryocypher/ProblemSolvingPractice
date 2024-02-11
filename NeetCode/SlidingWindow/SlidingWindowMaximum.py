@@ -35,7 +35,7 @@
 # 1 <= k <= nums.length
 
 class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    def maxSlidingWindowBFOptimized(self, nums: List[int], k: int) -> List[int]:
         def findHighest(l, r):
             maxVal = nums[l]
             for i in range(l, r):
