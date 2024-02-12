@@ -60,3 +60,19 @@ class Solution:
         bfs(root, -sys.maxsize+1)
 
         return count
+
+    def goodNodes(self, root: TreeNode) -> int:
+        def bfs(node, key):
+            if node == None:
+                return 0
+
+            count = 0
+            if node.val >= key:
+                count += 1
+
+            left = bfs(node.left, max(key, node.val))
+            right = bfs(node.right, max(key, node.val))
+
+            return left+right+count
+
+        return bfs(root, -sys.maxsize+1)
