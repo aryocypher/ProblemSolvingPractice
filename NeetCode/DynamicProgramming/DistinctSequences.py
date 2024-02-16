@@ -36,6 +36,28 @@
 # s and t consist of English letters.
 
 class Solution:
+    def numDistinctIt(self, s: str, t: str) -> int:
+        sL = len(s)
+        tL = len(t)
+        cache = [[-1 for _ in range(tL+1)] for _ in range(sL+1)]
+
+        def dfs(i, j):
+            if j == tL:
+                return 1
+            if i >= sL:
+                return 0
+            if cache[i][j] != -1:
+                return cache[i][j]
+            inc = 0
+            exc = 0
+            if s[i] == t[j]:
+                inc = dfs(i+1, j+1)
+            exc = dfs(i+1, j)
+            cache[i][j] = inc+exc
+            return cache[i][j]
+
+        return dfs(0, 0)
+
     def numDistinct(self, s: str, t: str) -> int:
         sL = len(s)
         tL = len(t)
