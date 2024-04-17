@@ -37,12 +37,12 @@
 # word1 and word2 consist of lowercase English letters.
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-      cache=[[int.maxsize]*len(word2+1) for i in range(len(word1+1))]
+      cache=[[sys.maxsize]*(len(word2)+1) for i in range(len(word1)+1)]
 
       for j in range(len(word2)+1):
         cache[len(word1)][j]=len(word2)-j
       for i in range(len(word1)+1):
-        cache[len(word2)[i]]=len(word1)-i
+        cache[i][len(word2)]=len(word1)-i
 
       for i in range(len(word1)-1,-1,-1):
         for j in range(len(word2)-1,-1,-1):
