@@ -32,10 +32,6 @@
 
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        if nums[0]>target:
-            return 0
-        if nums[len(nums)-1]<target:
-            return len(nums)
         l=0
         r=len(nums)-1
 
@@ -48,7 +44,4 @@ class Solution:
             else:
                 l=mid+1
         
-        if nums[l]>target:
-            return l
-        else:
-            return l+1
+        return l
