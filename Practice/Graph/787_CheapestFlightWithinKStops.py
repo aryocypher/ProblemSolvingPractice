@@ -54,19 +54,23 @@ class Solution:
             adjList[flight[0]].append([flight[1],flight[2]])
         
         dist=[sys.maxsize for _ in range(n)]
-        pq=[]
-        heapq.heappush(pq,(0,src,-1))
+        q=deque()
+        q.append((0,src,-1))
         dist[src]=0
 
-        while pq:
-            curr=heapq.heappop(pq)
+        while q:
+            curr=q.popleft()
             for nbr in adjList[curr[1]]:
                 if dist[nbr[0]]>curr[0]+nbr[1] and curr[2]+1<=k:
                     dist[nbr[0]]=curr[0]+nbr[1]
-                    heapq.heappush(pq,(dist[nbr[0]],nbr[0],curr[2]+1))
-            
+                    q.append((dist[nbr[0]],nbr[0],curr[2]+1))
+            print(curr,dist)
 
         return -1 if dist[dst]==sys.maxsize else dist[dst]
+
+        
+
+
 
         
 
