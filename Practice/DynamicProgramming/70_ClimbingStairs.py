@@ -31,7 +31,7 @@
 
 # 1 <= n <= 45
 class Solution:
-    def climbStairs(self, n: int) -> int:
+    def climbStairsRec(self, n: int) -> int:
         cache=[-1]*(n+1)
         def rec(i):
             if i==n:
@@ -46,3 +46,16 @@ class Solution:
 
             
         return rec(0)
+    
+
+class Solution:
+    def climbStairsIter(self, n: int) -> int:
+        cache=[1]*(n+1)
+        
+        for i in range(1,n+1):
+            step1Count=cache[i-1]
+            step2Count=cache[i-2] if i>1 else 0
+
+            cache[i]=step1Count+step2Count
+
+        return cache[n]
