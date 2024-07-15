@@ -29,8 +29,23 @@
 # Constraints:
 
 # 1 <= m, n <= 100
+
+#Most optimal Solution
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
+        
+        prev=[1]*n   
+        for i in range(1,m):
+            curr=[1]*n
+            for j in range(1,n):
+                curr[j]=prev[j]+curr[j-1]
+            prev=curr
+
+        return prev[n-1]
+    
+
+#Ite solution
+    def uniquePathsIt(self, m: int, n: int) -> int:
         if m==1 and n==1:
             return 1
         cache=[[0 for i in range(n)] for j in range(m)]
@@ -48,3 +63,23 @@ class Solution:
                 cache[i][j]=cache[i-1][j]+cache[i][j-1]
 
         return cache[m-1][n-1]
+    
+
+#Rec solution
+    def uniquePathsRec(self, m: int, n: int) -> int:
+        
+        cache={}
+        def rec(i,j):
+            if i==m or j==n:
+                return 0
+            if i==m-1 and j==n-1:
+                return 1
+            if (i,j) in cache:
+                return cache[(i,j)]
+            down=rec(i+1,j)
+            right=rec(i,j+1)
+
+            cache[(i,j)]= down+right
+            return cache[(i,j)]
+        
+        return rec(0,0)
