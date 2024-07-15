@@ -35,6 +35,7 @@
 
 # Follow up: Could you do this using only O(n) extra space, where n is the total number of rows in the triangle?
 class Solution:
+    #Iterative optimized
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         m=len(triangle)
 
