@@ -53,3 +53,32 @@ class Solution:
         profit+=stockVal-minVal
 
         return profit
+    
+
+
+class SolutionDP:
+    def maxProfitDP(self, prices: List[int]) -> int:
+        cache={}
+        n=len(prices)
+        def rec(i,buy):
+            if i>=n:
+                return 0
+            
+            if (i,buy) in cache:
+                return cache[(i,buy)]
+            inc=0
+            exc=0
+            if buy:
+                inc=-prices[i]+ rec(i+1,not buy)
+                exc=rec(i+1,buy)
+            else:
+                inc=prices[i]+rec(i+1,not buy)
+                exc=rec(i+1,buy)
+            
+            cache[(i,buy)]= max(inc,exc)
+
+            return cache[(i,buy)]
+
+            
+        return rec(0,True)
+        
