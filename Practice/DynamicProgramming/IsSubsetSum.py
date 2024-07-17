@@ -35,7 +35,44 @@
 # 1<= arr[i] <= 100
 # 1<= sum <= 104
 class Solution:
+    #Most optimal apporach
     def isSubsetSum (self, N, arr, sum):
+        cache=[0 for i in range(sum+1)]
+        cache[0]=1
+        
+        for i in range(1,N+1):
+            curr=[0]*(sum+1)
+            curr[0]=1
+            for j in range(1,sum+1):
+                inc=False
+                exc=False
+                if arr[i-1]<=j:
+                    inc=cache[j-arr[i-1]]
+                exc=cache[j]
+                curr[j]=inc or exc
+                
+            cache=curr
+        return cache[sum]
+    def isSubsetSumIterative(self, N, arr, sum):
+        cache=[[0 for i in range(sum+1)] for j in range(N+1)]
+        
+        for i in range(N+1):
+            cache[i][0]=True
+            
+        
+        for i in range(1,N+1):
+            for j in range(1,sum+1):
+                inc=False
+                exc=False
+                if arr[i-1]<=j:
+                    inc=cache[i-1][j-arr[i-1]]
+                exc=cache[i-1][j]
+                cache[i][j]=inc or exc
+                
+        
+        return cache[N][sum]
+                
+    def isSubsetSumRec(self, N, arr, sum):
         cache={}
         
         def rec(i,val):
