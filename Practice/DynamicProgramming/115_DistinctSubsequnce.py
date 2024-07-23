@@ -41,16 +41,14 @@ class Solution:
         n=len(t)
         cache={}
         def rec(i,j):
-            if i>=m or j>=n:
+            if j>=n:
+                return 1
+            if i>=m:
                 return 0
 
             if(i,j) in cache:
                 return cache[(i,j)]
 
-            if j==n-1 and s[i]==t[j]:
-                cache[(i,j)]= 1+rec(i+1,j)
-                return cache[(i,j)]
-            
             inc=0
             exc=0
             if s[i]==t[j]:
