@@ -32,6 +32,22 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    def swapPairsSingleIteration(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy=ListNode()
+        res=dummy
+        curr =head
+        while curr and curr.next:
+            next=curr.next.next
+            res.next=curr.next
+            res.next.next=curr
+            curr.next=None
+            res=res.next.next
+            curr=next
+
+        if curr:
+            res.next=curr
+
+        return dummy.next
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         l1=ListNode()
         l2=ListNode()
