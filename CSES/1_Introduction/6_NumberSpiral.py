@@ -23,3 +23,26 @@
 # 8
 # 1
 # 15
+
+def calculateSpiralValue(a:int,b:int):
+    if a>=b:
+        if a%2==0:
+            return (a*a)-(b-1)
+        else:
+            return (a*a)-(a-1)-(a-b)
+    else:
+        if b%2==1:
+            return (b*b)-(a-1)
+        else:
+            return (b*b)-(b-1)-(b-a)
+
+
+num= int(input())
+i=0
+while i<num:
+    i+=1
+    vals=input()
+    valList=vals.split()
+    print(calculateSpiralValue(int(valList[0]),int(valList[1])))
+
+
